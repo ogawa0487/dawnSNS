@@ -1,0 +1,114 @@
+@media screen and (max-width: 950px) {/*~タブレットサイズ*/
+/* ===================common==================== */
+
+    body{
+        background: url(../img/bg_sp.jpg)no-repeat;
+        background-color: #e9ebee;
+        background-size: cover;
+    }
+
+    #content{
+        max-width: 95vw;
+    }
+
+/*--------------------heder--------------------*/
+
+
+/* ===================list====================== */
+
+    /*create_btn*/
+    .create_btn{
+        margin: 0;
+        margin-bottom: 10px;
+        padding-top: 1vh;
+    }
+
+    /*table*/
+    table{
+        width: 50vw;
+    }
+}
+
+/* ===================form====================== */
+    form h2{
+        font-size: 12pt;
+        padding: 20px 0;
+    }
+
+
+
+@media screen and (max-width: 376px) {/*~スマホサイズ*/
+/* ===================common====================== */
+    br.sp{
+        display: inline;
+    }
+
+/* ===================list====================== */
+    /*serch*/
+    #search {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+        /*table*/
+    table{
+         width: 100%;
+         table-layout: fixed;
+         word-break: break-all;
+    }
+
+    tr:first-child .mail{
+        width:  auto;
+    }
+
+    tr:first-child .id,
+    tr:first-child .up,
+    tr:first-child .dele{
+        width: 13%;
+    }
+
+    td{
+        padding:3px 0 ;
+    }
+
+/* ===================form====================== */
+    form h2{
+        max-width: 94vw;
+    }
+
+    /*form_input*/
+    .form_input{
+        display: block;
+    }
+
+    .form_input input{
+        width: 100%;
+    }
+
+    .form_input .username{
+        margin: auto;
+        margin-bottom: 20px;
+    }
+
+    .form_input .mail{
+        margin: auto;
+    }
+
+    .form_btn{
+        width: 95vw;
+    }
+
+    .form_return_btn{
+        min-width: 140px;
+        margin-bottom:20px;
+    }
+
+    p.return a{
+        padding-left: 40%;
+        padding-right: 8%;
+    }
+
+    .form_create_btn input{
+        padding: 26px 35px;
+    }
+
+}/* @media screen and (max-width: 950px) End */

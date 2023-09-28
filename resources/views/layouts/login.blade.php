@@ -53,7 +53,14 @@
                 </div>
                 <p class="btn"><a href="">フォロワーリスト</a></p>
             </div>
-            <p class="btn"><a href="">ユーザー検索</a></p>
+            <div>
+                <form class="searchform">
+                <div class="form-group">
+                <input type="search" class="searchform" name="search"  value="{{request('search')}}" placeholder="フォロワー検索" aria-label="検索...">
+                 <input type="submit" value="検索" class="btn btn-info">
+            </div>
+  </form>
+            </div>
         </div>
     </div>
     <footer>
