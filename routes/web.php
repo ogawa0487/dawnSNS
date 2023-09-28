@@ -34,11 +34,12 @@ Route::get('/added', 'Auth\RegisterController@added');
 Route::get('/top','PostsController@index');
 Route::post('/post/create','PostsController@create');
 Route::get('/post/{id}/delete','PostsController@delete');
-Route::post('post/update', 'PostsController@update');
+Route::post('/post/update', 'PostsController@update');
+Route::post('/post/search', 'PostsController@index');
 
 Route::get('/profile','UsersController@profile');
 
-Route::get('/search','UsersController@index');
+Route::get('/search','UsersController@search');
 
 Route::get('/follow-list','PostsController@index');
 Route::get('/follower-list','PostsController@index');

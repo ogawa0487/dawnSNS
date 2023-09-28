@@ -2,7 +2,7 @@
 
 @section('content')
 <div class='container'>
-     {!! Form::open(['url' => 'post/create']) !!}
+     {!! Form::open(['url' => 'post/search']) !!}
     <div class="form-group">
     {!! Form::input('text', 'newPost', null, ['required', 'class' => 'form-control', 'placeholder' => '何をつぶやこうか？']) !!}
     </div>

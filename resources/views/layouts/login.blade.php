@@ -17,7 +17,8 @@
     <link rel="icon" href="画像URL" sizes="62x62" type="image/png" />
     <!--iphoneのアプリアイコン指定-->
     <link rel="apple-touch-icon-precomposed" href="画像のURL" />
-    <!--OGPタグ/twitterカード-->
+    <script src="JavaScriptファイルのURL"></script>
+    <script src="JavaScriptファイルのURL"></script>
 </head>
 <body>
     <header>
@@ -46,26 +47,21 @@
                 <p>フォロー数</p>
                 <p>〇〇名</p>
                 </div>
-                <p class="btn"><a href="">フォローリスト</a></p>
+                <p class="btn"><a href="/follow-list">フォローリスト</a></p>
                 <div>
                 <p>フォロワー数</p>
                 <p>〇〇名</p>
                 </div>
-                <p class="btn"><a href="">フォロワーリスト</a></p>
-            </div>
-            <div>
-                <form class="searchform">
-                <div class="form-group">
-                <input type="search" class="searchform" name="search"  value="{{request('search')}}" placeholder="フォロワー検索" aria-label="検索...">
-                 <input type="submit" value="検索" class="btn btn-info">
-            </div>
-  </form>
+                <p class="btn"><a href="/follower-list">フォロワーリスト</a></p>
+                </div>
+                <div>
+                </div>
+                <p class="btn"><a href="/search">ユーザー検索</a></p>
+                </div>
             </div>
         </div>
     </div>
     <footer>
     </footer>
-    <script src="JavaScriptファイルのURL"></script>
-    <script src="JavaScriptファイルのURL"></script>
 </body>
 </html>
