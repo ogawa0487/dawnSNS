@@ -22,13 +22,17 @@ class UsersController extends Controller
     public function upProfile(Request $request)
     {
         $new_username = $request->input('newUsername');
-        // dd($new_username);
         $new_mail = $request->input('newMail');
         $new_Pass = $request->input('newPass');
-        // dd($new_Pass);
+
+        if ($new_Pass == null) {
+            $new_Pass = Auth::user()->password;
+        } else {
+            $new_Pass = Hash::make($request->input('newPass'));
+        }
+
         $new_Bio = $request->input('newBio');
         $new_Icon = $request->input('newIcon');
-        $new_Pass = Hash::make($new_Pass);
         DB::table('users')
             ->where('id', Auth::id())
             ->update([
@@ -51,7 +55,6 @@ class UsersController extends Controller
         // dd($followings);
         return view('users.search',['users'=>$users, 'followings'=>$followings]);
     }
-
         public function userSearch(Request $request)
     {
         $users = DB::table('users')->get();
