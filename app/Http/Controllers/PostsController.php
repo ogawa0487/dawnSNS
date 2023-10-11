@@ -12,10 +12,13 @@ class PostsController extends Controller
     //
     public function index()
     {
+        $auth = Auth::user();
         // select users.username from posts join users on posts.userid = users.id;
-        $posts = DB::table('posts')->join('users', 'posts.user_id','=','users.id')->select('posts.*', 'users.username')->get();
-    //   dd($posts);
-        return view('posts.index',['posts'=>$posts]);
+        $posts = DB::table('posts')
+            ->join('users', 'posts.user_id','=','users.id')
+            ->select('posts.*', 'users.username','users.images','users.id')
+            ->get();
+        return view('posts.index',['posts'=>$posts,'auth' => $auth]);
     }
 
     public function create(Request $request)

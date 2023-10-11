@@ -38,8 +38,13 @@ Route::post('/post/update', 'PostsController@update');
 Route::post('/post/search', 'PostsController@index');
 
 Route::get('/profile','UsersController@profile');
+Route::post('upProfile', 'UsersController@upProfile');
+
 
 Route::get('/search','UsersController@search');
 
-Route::get('/follow-list','PostsController@index');
-Route::get('/follower-list','PostsController@index');
+Route::get('follow-list','FollowsController@followList');
+Route::get('/follower-list','FollowsController@followerList');
+Route::post('/newfollow','FollowsController@newfollow');
+Route::post('/deletefollow', 'FollowsController@deletefollow');
+Route::post('/userSearch', 'UsersController@userSearch');

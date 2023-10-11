@@ -2,7 +2,7 @@
 
 @section('content')
 <div class='container'>
-     {!! Form::open(['url' => 'post/search']) !!}
+     {!! Form::open(['url' => 'post/create']) !!}
     <div class="form-group">
     {!! Form::input('text', 'newPost', null, ['required', 'class' => 'form-control', 'placeholder' => '何をつぶやこうか？']) !!}
     </div>
@@ -13,6 +13,7 @@
 <table>
   @foreach ($posts as $post)
   <tr>
+      <td><img src="{{ asset('images/'.$post->images) }}" alt=""></td>
       <td>{{ $post->posts }}</td>
       <td>{{ $post->username }}</td>
       <td>{{ $post->created_at }}</td>

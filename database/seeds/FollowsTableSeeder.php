@@ -33,6 +33,11 @@ class FollowsTableSeeder extends Seeder
                 'follower' => 2,
                 'created_at' => '2020-3-17 10:10:10',
             ],
+            [
+                'follow' => 1,
+                'follower' => 3,
+                'created_at' => '2020-3-17 10:10:10',
+            ],
         ]);
     }
 }
