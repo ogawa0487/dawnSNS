@@ -31,10 +31,19 @@
   <div>
     Iconimage
     {!! Form::input('text', 'newIcon', $user->images, ['required', 'class' => 'form-control']) !!}
+
+    <form method="POST" action="/upload" enctype="multipart/form-data">
+    @csrf
+    <input type="file" name="image">
+    <button>アップロード</button>
+    @foreach($users as $user)
+
+    <img src="{{ asset($user->img_path) }}" >
+
+    @endforeach
+
   </div>
 <button type="submit" class="btn btn-primary pull-right">更新したい</button>
 {!! Form::close() !!}
-
-
 
 @endsection

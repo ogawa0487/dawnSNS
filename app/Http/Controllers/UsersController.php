@@ -77,5 +77,30 @@ class UsersController extends Controller
         return view('users.search',['userSearch'=>$userSearch,'users'=>$users,'followings'=>$followings]);
     }
 
+    public function upload(Request $request)
+    {
+        // ディレクトリ名
+        $dir = 'img';
+
+        // アップロードされたファイル名を取得
+        $file_name = $request->file('file')->getClientOriginalName();
+
+        // 取得したファイル名で保存
+        // storage/app/public/任意のディレクトリ名/
+        $request->file('file')->storeAs('public/' . $dir, $file_name);
+
+        $image = users();
+        // dd($image);
+// $任意の変数名　=　テーブルを操作するモデル名();
+// storage/app/public/任意のディレクトリ名/
+        $image->images = $file_name;
+        $image->images = 'storage/app/public/' . $dir . '/' . $file_name;
+        $image->save();
+
+   //ページを更新する
+   return redirect('/profile');
+    }
+
+
 
 }
