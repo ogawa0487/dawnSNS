@@ -24,6 +24,9 @@ class UsersController extends Controller
         $new_username = $request->input('newUsername');
         $new_mail = $request->input('newMail');
         $new_Pass = $request->input('newPass');
+        $file_name = $request->file('image')->getClientOriginalName();
+        // dd($file_name);
+        $request->file('image')->storeAs('public/images/' , $file_name);
 
         if ($new_Pass == null) {
             $new_Pass = Auth::user()->password;
@@ -31,8 +34,14 @@ class UsersController extends Controller
             $new_Pass = Hash::make($request->input('newPass'));
         }
 
+        if ($new_Pass == null) {
+            $file_name = Auth::user()->images;
+        } else {
+            $file_name = $request->file('image')->getClientOriginalName();
+        }
+
         $new_Bio = $request->input('newBio');
-        $new_Icon = $request->input('newIcon');
+
         DB::table('users')
             ->where('id', Auth::id())
             ->update([
@@ -40,7 +49,7 @@ class UsersController extends Controller
                 'mail' => $new_mail,
                 'password' => $new_Pass,
                 'bio' => $new_Bio,
-                'images' => $new_Icon
+                'images' =>$file_name
             ]);
         return redirect('/top');
     }
@@ -76,31 +85,6 @@ class UsersController extends Controller
         }
         return view('users.search',['userSearch'=>$userSearch,'users'=>$users,'followings'=>$followings]);
     }
-
-    public function upload(Request $request)
-    {
-        // ディレクトリ名
-        $dir = 'img';
-
-        // アップロードされたファイル名を取得
-        $file_name = $request->file('file')->getClientOriginalName();
-
-        // 取得したファイル名で保存
-        // storage/app/public/任意のディレクトリ名/
-        $request->file('file')->storeAs('public/' . $dir, $file_name);
-
-        $image = users();
-        // dd($image);
-// $任意の変数名　=　テーブルを操作するモデル名();
-// storage/app/public/任意のディレクトリ名/
-        $image->images = $file_name;
-        $image->images = 'storage/app/public/' . $dir . '/' . $file_name;
-        $image->save();
-
-   //ページを更新する
-   return redirect('/profile');
-    }
-
 
 
 }

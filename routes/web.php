@@ -39,7 +39,7 @@ Route::post('/post/search', 'PostsController@index');
 
 Route::get('/profile','UsersController@profile');
 Route::post('upProfile', 'UsersController@upProfile');
-Route::resource('/upload', 'UsersController@upProfile');
+Route::resource('/upload', 'UsersController@upload');
 
 
 Route::get('/search','UsersController@search');

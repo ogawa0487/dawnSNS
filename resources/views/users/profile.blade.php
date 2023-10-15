@@ -2,7 +2,7 @@
 
 @section('content')
 プロフィール画面到達！
-{!! Form::open(['url' => 'upProfile']) !!}
+{!! Form::open(['url' => 'upProfile',  'files' => true]) !!}
   <div>
     Username
     {!! Form::input('text', 'newUsername', $user->username, ['required', 'class' => 'form-control']) !!}
@@ -25,22 +25,13 @@
 
   <div>
     Bio
-    {!! Form::input('text', 'newBio', $user->bio, ['required', 'class' => 'form-control']) !!}
+    {!! Form::input('text', 'newBio', $user->bio, ['class' => 'form-control']) !!}
   </div>
 
   <div>
     Iconimage
-    {!! Form::input('text', 'newIcon', $user->images, ['required', 'class' => 'form-control']) !!}
 
-    <form method="POST" action="/upload" enctype="multipart/form-data">
-    @csrf
     <input type="file" name="image">
-    <button>アップロード</button>
-    @foreach($users as $user)
-
-    <img src="{{ asset($user->img_path) }}" >
-
-    @endforeach
 
   </div>
 <button type="submit" class="btn btn-primary pull-right">更新したい</button>
