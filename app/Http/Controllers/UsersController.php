@@ -24,9 +24,8 @@ class UsersController extends Controller
         $new_username = $request->input('newUsername');
         $new_mail = $request->input('newMail');
         $new_Pass = $request->input('newPass');
-        $file_name = $request->file('image')->getClientOriginalName();
+        $file_name = $request->file('image');
         // dd($file_name);
-        $request->file('image')->storeAs('public/images/' , $file_name);
 
         if ($new_Pass == null) {
             $new_Pass = Auth::user()->password;
@@ -34,10 +33,11 @@ class UsersController extends Controller
             $new_Pass = Hash::make($request->input('newPass'));
         }
 
-        if ($new_Pass == null) {
+        if ($file_name == null) {
             $file_name = Auth::user()->images;
         } else {
             $file_name = $request->file('image')->getClientOriginalName();
+            $request->file('image')->storeAs('public/images/' , $file_name);
         }
 
         $new_Bio = $request->input('newBio');
