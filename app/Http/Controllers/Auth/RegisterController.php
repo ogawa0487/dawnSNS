@@ -109,7 +109,7 @@ class RegisterController extends Controller
     }
 
       public function added(Request $request){
-        $username = $request->input('username');
+        $request->session()->put('username', username);
         return view('auth.added', ['username'=>$username]);
     }
 }
