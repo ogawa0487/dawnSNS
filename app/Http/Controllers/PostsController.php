@@ -16,7 +16,7 @@ class PostsController extends Controller
         // select users.username from posts join users on posts.userid = users.id;
         $posts = DB::table('posts')
             ->join('users', 'posts.user_id','=','users.id')
-            ->select('posts.*', 'users.username','users.images','users.id')
+            ->select('posts.*', 'users.username','users.images')
             ->get();
         return view('posts.index',['posts'=>$posts,'auth' => $auth]);
     }

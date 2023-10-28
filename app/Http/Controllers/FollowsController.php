@@ -16,6 +16,11 @@ class FollowsController extends Controller
             ->join('users', 'posts.user_id','=','users.id')
             ->join('follows', 'follows.follow','=','users.id')
             ->where('follower', Auth::id())
+            ->select('posts.posts',
+            'posts.created_at',
+            'users.id',
+            'users.username',
+            'users.images')
             ->get();
         return view('follows.followList',['posts'=>$posts]);
     }
@@ -41,7 +46,7 @@ class FollowsController extends Controller
             'follower' => Auth::id(),
             'created_at' => now()
         ]);
-        return redirect('/search');
+        return back();
     }
 
     public function deletefollow(Request $request)
@@ -54,7 +59,7 @@ class FollowsController extends Controller
             'follow' => $id,
             ])->delete();
 
-        return redirect('/search');
+        return back();
     }
 
 }

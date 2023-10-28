@@ -26,6 +26,8 @@ Route::post('/login', 'Auth\LoginController@login');
 
 Route::get('/register', 'Auth\RegisterController@register');
 Route::post('/register', 'Auth\RegisterController@register');
+Route::get('/logout', 'Auth\LoginController@logout');
+
 
 Route::get('/added', 'Auth\RegisterController@added');
 
@@ -40,6 +42,8 @@ Route::post('/post/search', 'PostsController@index');
 Route::get('/profile','UsersController@profile');
 Route::post('upProfile', 'UsersController@upProfile');
 Route::resource('/upload', 'UsersController@upload');
+Route::get('/OtherProfile/{id}', 'UsersController@OtherProfile');
+
 
 
 Route::get('/search','UsersController@search');

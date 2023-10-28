@@ -86,5 +86,29 @@ class UsersController extends Controller
         return view('users.search',['userSearch'=>$userSearch,'users'=>$users,'followings'=>$followings]);
     }
 
+    public function OtherProfile($id)
+    {
+        $profile = DB::table('posts')
+            ->join('users', 'posts.user_id','=','users.id')
+            ->where('users.id', $id)
+            ->select('posts.posts',
+            'posts.created_at',
+            'users.username',
+            'users.images')
+            ->get();
+            // dd($profile);
+
+        $icon = DB::table('users')
+                ->where('id', $id)
+                ->first();
+
+        $followings = DB::table('follows')
+        ->where('follower', Auth::id())
+        ->pluck('follow');
+
+
+        return view('users.OtherProfile',['profile'=>$profile,'icon'=>$icon,'followings'=>$followings]);
+    }
+
 
 }

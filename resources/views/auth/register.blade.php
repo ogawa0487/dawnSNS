@@ -8,15 +8,28 @@
 
 {{ Form::label('ユーザー名') }}
 {{ Form::text('username',null,['class' => 'input']) }}
+ @if ($errors->has('username'))
+  <span class="text-danger">{{$errors->first('username')}}</span>
+  @endif
 
 {{ Form::label('メールアドレス') }}
-{{ Form::text('mail',null,['class' => 'input']) }}
+{{ Form::email('email',null,['class' => 'input']) }}
+@if ($errors->has('email'))
+  <span class="text-danger">{{$errors->first('email')}}</span>
+  @endif
 
 {{ Form::label('パスワード') }}
 {{ Form::text('password',null,['class' => 'input']) }}
+@if ($errors->has('password'))
+  <span class="text-danger">{{$errors->first('password')}}</span>
+  @endif
+
 
 {{ Form::label('パスワード確認') }}
-{{ Form::text('password-confirm',null,['class' => 'input']) }}
+{{ Form::text('password_confirmation',null,['class' => 'input']) }}
+@if ($errors->has('password_confirmation'))
+  <span class="text-danger">{{$errors->first('password_confirmation')}}</span>
+  @endif
 
 {{ Form::submit('登録') }}
 

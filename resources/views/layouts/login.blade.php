@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="description" content="ページの内容を表す文章" />
     <title></title>
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/style.css">
     <!--スマホ,タブレット対応-->
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <!--サイトのアイコン指定-->
@@ -17,8 +17,8 @@
     <link rel="icon" href="画像URL" sizes="62x62" type="image/png" />
     <!--iphoneのアプリアイコン指定-->
     <link rel="apple-touch-icon-precomposed" href="画像のURL" />
-    <script src="JavaScriptファイルのURL"></script>
-    <script src="JavaScriptファイルのURL"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="./js/style.js"></script>
 </head>
 <body>
     <header>
@@ -26,14 +26,25 @@
         <h1><a><img src="images/main_logo.png"></a></h1>
             <div id="">
                 <div id="">
-                    <span>{{ asset('image/') }}</span>
                     <p>{{Auth::user()->username}}さん<img src="{{ asset('/images/'. Auth::user()->images) }}" alt=""></p>
-                <div>
-                <ul>
-                    <li><a href="/top">ホーム</a></li>
-                    <li><a href="/profile">プロフィール</a></li>
-                    <li><a href="/logout">ログアウト</a></li>
-                </ul>
+
+                    <!-- 矢印あり↓ -->
+                    <div class="accordion">
+                        <div class="accordion-container">
+                            <div class="accordion-item">
+                                <h3 class="accordion-title js-accordion-title">
+                                 {{Auth::user()->username}}さん
+                                </h3>
+                                <div class="accordion-content">
+                                        <br><a href="/top">ホーム</a>
+                                        <br><a href="/profile">プロフィール</a>
+                                        <br><a href="/logout">ログアウト</a>
+                                </div>
+                            </div>
+
+                         </div>
+                </div>
+                    <!-- 矢印あり↑ -->
             </div>
         </div>
     </header>
@@ -43,7 +54,7 @@
         </div >
         <div id="side-bar">
             <div id="confirm">
-                <p>{{Auth::user()->username}}さんの</p>
+                <p>さんの</p>
                 <div>
                 <p>フォロー数</p>
                 <p>〇〇名</p>

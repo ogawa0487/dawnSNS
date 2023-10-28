@@ -6,27 +6,42 @@
     <div class="form-group">
     {!! Form::input('text', 'newPost', null, ['required', 'class' => 'form-control', 'placeholder' => '何をつぶやこうか？']) !!}
     </div>
-    <button type="submit" class="btn btn-success pull-right">投稿</button>
+    <input type="image" name="btn_confirm" src="./images/post.png"  alt="次へ" value="次へ" width="30" height="30">
     {!! Form::close() !!}
 </div>
 
 <table>
   @foreach ($posts as $post)
   <tr>
-      <td><img src="{{ asset('images/'.$post->images) }}" alt=""></td>
+      <td><img class="icon" src="{{ asset('storage/images/'.$post->images) }}" alt=""></td>
       <td>{{ $post->posts }}</td>
       <td>{{ $post->username }}</td>
       <td>{{ $post->created_at }}</td>
+
       <td>
-        {!! Form::open(['url' => 'post/update']) !!}
-          <div class="form-group">
-          {!! Form::input('text', 'upPost', $post->posts, ['required', 'class' => 'form-control']) !!}
-          {!! Form::hidden('id', $post->id ) !!}
-          </div>
-          <button type="submit" class="btn btn-primary pull-right">編集</button>
-        {!! Form::close() !!}
+        <div class="modalopen"  data-target="modal{{ $post->id }}">
+          <img class="life-img" src="./images/edit.png" alt="編集">
+        </div>
       </td>
-      <td><a class="btn btn-danger" href="/post/{{ $post->id }}/delete" onclick="return confirm('こちらの投稿を削除してもよろしいでしょうか？')">削除</a></td>
+
+      <td>
+        <div class="modal-main js-modal" id="modal{{ $post->id }}">
+          <div class="modal-inner">
+            <div class="inner-content">
+            {!! Form::open(['url' => 'post/update']) !!}
+            <div class="form-group">
+            {!! Form::input('text', 'upPost', $post->posts, ['required', 'class' => 'form-control']) !!}
+            {!! Form::hidden('id', $post->id ) !!}
+            </div>
+          <button type="submit" class="btn btn-primary pull-right">編集</button>
+            {!! Form::close() !!}
+            <a class="send-button modalClose">Close</a>
+            </div>
+          </div>
+        </div>
+      </td>
+      <td><a href="/post/{{ $post->id }}/delete"><img src="./images/trash.png" onMouseOver="this.src='./images/trash_h.png'" onMouseOut="this.src='./images/trash.png'" onclick="return confirm('こちらの投稿を削除してもよろしいでしょうか？')"></a></td>
+
   </tr>
   @endforeach
 </table>
