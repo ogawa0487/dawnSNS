@@ -32,6 +32,12 @@
     Iconimage
 
     <input type="file" name="image">
+     @if ($errors->has('image_name'))
+  <span class="text-danger">{{$errors->first('image_name')}}</span>
+  @endif
+  @if ($errors->has('image'))
+  <span class="text-danger">{{$errors->first('image')}}</span>
+  @endif
 
   </div>
 <button type="submit" class="btn btn-primary pull-right">更新したい</button>

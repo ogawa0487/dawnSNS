@@ -32,11 +32,6 @@ header {
     display: none;
 }
 
-/* モーダルのスタイル */
-.modal-main {
-    /* ① モーダルウィンドウを非表示にする。*/
-    display: none;
-}
 
 .modal-inner {
     /* ② モーダル背景を画面幅いっぱいに設定し、位置を固定する。 */

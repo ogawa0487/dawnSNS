@@ -35,7 +35,6 @@
             </div>
           <button type="submit" class="btn btn-primary pull-right">編集</button>
             {!! Form::close() !!}
-            <a class="send-button modalClose">Close</a>
             </div>
           </div>
         </div>

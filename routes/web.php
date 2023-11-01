@@ -44,8 +44,6 @@ Route::post('upProfile', 'UsersController@upProfile');
 Route::resource('/upload', 'UsersController@upload');
 Route::get('/OtherProfile/{id}', 'UsersController@OtherProfile');
 
-
-
 Route::get('/search','UsersController@search');
 
 Route::get('follow-list','FollowsController@followList');

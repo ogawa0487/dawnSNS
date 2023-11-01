@@ -55,10 +55,9 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $data = session()->username();
         return User::create([
             'username' => $data['username'],
-            'mail' => $data['mail'],
+            'mail' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
     }
@@ -87,7 +86,6 @@ class RegisterController extends Controller
                 'email.max' => 'アドレスは12文字以内で入力してください。',
                 'email.unique'=> '既に登録済みのメールアドレスです。',
 
-
                 'password.required'=> 'パスワードを入力してください。',
                 'password.max'=> 'パスワードは文12以内で入力してください',
                 'password.min'=> 'パスワードは4文字以上で入力してください。',
@@ -102,14 +100,14 @@ class RegisterController extends Controller
                     ->withErrors($validator)
                     ->withInput();
             }
-            // $this->create($data);
+            session()->put('name', $data['username']);
+            $this->create($data);
             return redirect('added');
         }
         return view('auth.register');
     }
 
-      public function added(Request $request){
-        $request->session()->put('username', username);
-        return view('auth.added', ['username'=>$username]);
+      public function added(){
+        return view('auth.added');
     }
 }
