@@ -6,22 +6,32 @@
   <div>
     Username
     {!! Form::input('text', 'newUsername', $user->username, ['required', 'class' => 'form-control']) !!}
+     @if ($errors->has('newUsername'))
+  <span class="text-danger">{{$errors->first('username')}}</span>
+  @endif
 
   </div>
 
   <div>
     Mailadress
     {!! Form::input('text', 'newMail', $user->mail, ['required', 'class' => 'form-control']) !!}
+    @if ($errors->has('newMail'))
+  <span class="text-danger">{{$errors->first('newMail')}}</span>
+  @endif
   </div>
 
   <div>
     Password
     {!! Form::input('text', 'new', '●●●●●●', ['required', 'class' => 'form-control']) !!}
+
   </div>
 
   <div>
     newPassword
    {!! Form::input('text', 'newPass', null, ['class' => 'form-control']) !!}
+   @if ($errors->has('newPass'))
+  <span class="text-danger">{{$errors->first('newPass')}}</span>
+  @endif
   </div>
 
   <div>
