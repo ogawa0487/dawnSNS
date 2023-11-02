@@ -6,6 +6,7 @@
   <div>
     Username
     {!! Form::input('text', 'newUsername', $user->username, ['required', 'class' => 'form-control']) !!}
+
   </div>
 
   <div>

@@ -27,29 +27,22 @@ class UsersController extends Controller
         $new_Pass = $request->input('newPass');
         $file_name = $request->file('image');
         $data = $request->input();
-        $data += array('image_name' => $request->file('image')->getClientOriginalName());
 
         $rules = [
             'newUsername' => 'required|max:12|min:4',
             'newMail'=> 'required|email|max:12|min:4|unique:users,mail',
             'newPass' => 'required|max:12|min:4|confirmed|unique:users,password',
             'newPass_confirmation' =>'required|min:4',
-
-            'image_name' => 'required|regex:/^[A-Za-z0-9\-_.]+$/',
         ];
         $messages = [
-            'image_name.regex'=> '半角英数字にしてください。',
-
             'newUsername.required'=> 'ユーザーネームを入力してください。',
             'newUsername.min'=> '名前は:4文字以上で入力してください。',
             'newUsername.max' => '名前は12文字以内で入力してください',
-
             'newMail.required'=> 'メールアドレスを入力してください。',
             'newMail.email'=> '正しいメールアドレスを入力してください。',
             'newMail.min'=> 'アドレスは4文字以上で入力してください。',
             'newMail.max' => 'アドレスは12文字以内で入力してください。',
             'newMail.unique'=> '既に登録済みのメールアドレスです。',
-
             'newPass.required'=> 'パスワードを入力してください。',
             'newPass.max'=> 'パスワードは文12以内で入力してください',
             'newPass.min'=> 'パスワードは4文字以上で入力してください。',
@@ -57,24 +50,12 @@ class UsersController extends Controller
         ];
         $validator = Validator::make($data, $rules, $messages);
         if ($validator->fails()) {
+            dd();
             return redirect('/profile')
                 ->withErrors($validator)
                 ->withInput();
         }
 
-        $rules = [
-            'image' => 'image',
-        ];
-        $messages = [
-            'image.image'=> '画像を選択してください。',
-
-    ];
-        $validator = Validator::make($request->all(), $rules, $messages);
-        if ($validator->fails()) {
-            return redirect('/profile')
-                ->withErrors($validator)
-                ->withInput();
-        }
 
         if ($new_Pass == null) {
             $new_Pass = Auth::user()->password;
@@ -85,6 +66,31 @@ class UsersController extends Controller
         if ($file_name == null) {
             $file_name = Auth::user()->images;
         } else {
+            $data += array('image_name' => $request->file('image')->getClientOriginalName());
+            $rules = [
+                'image_name' => 'required|regex:/^[A-Za-z0-9\-_.]+$/',
+            ];
+            $messages = [
+                'image_name.regex'=> '半角英数字にしてください。',
+            ];
+            $validator = Validator::make($data, $rules, $messages);
+            if ($validator->fails()) {
+                return redirect('/profile')
+                    ->withErrors($validator)
+                    ->withInput();
+            }
+            $rules = [
+                'image' => 'image',
+            ];
+            $messages = [
+                'image.image'=> '画像を選択してください。',
+            ];
+            $validator = Validator::make($request->all(), $rules, $messages);
+            if ($validator->fails()) {
+                return redirect('/profile')
+                    ->withErrors($validator)
+                    ->withInput();
+            }
             $file_name = $request->file('image')->getClientOriginalName();
             $request->file('image')->storeAs('public/images/' , $file_name);
         }
